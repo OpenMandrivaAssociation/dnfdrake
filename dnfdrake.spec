@@ -1,5 +1,5 @@
 %define name dnfdrake
-%define version 1.17.33
+%define version 1.17.34
 %define release %mkrel 1
 
 Name: %{name}
@@ -9,7 +9,7 @@ Packager: Astragalo
 License: GPL
 Group: Graphical desktop/KDE
 Summary: DnfDrake  is a frontend for DNF
-Url: http://www.
+Url: https://mib.pianetalinux.org/
 Source: %{name}-%version.tar.gz
 Requires:	sudo
 Requires: gambas3-runtime 
@@ -21,6 +21,7 @@ Requires: gambas3-gb-gtk3
 Requires: gambas3-gb-dbus
 Requires: hicolor-icon-theme
 Requires: dnf-utils
+Requires:  python-dnf-plugin-versionlock
 BuildArch:	noarch
 Conflicts:  gambas3-runtime  > 3.15.2-6
 
