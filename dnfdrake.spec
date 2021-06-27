@@ -1,5 +1,5 @@
 %define name dnfdrake
-%define version 1.17.35
+%define version 1.18.1
 %define release %mkrel 3
 
 Name: %{name}
