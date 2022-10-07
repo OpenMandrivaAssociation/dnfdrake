@@ -1,6 +1,6 @@
 Name: dnfdrake
-Version: 3.4.3
-Release: 2
+Version: 3.4.4
+Release: 1
 Packager: Astragalo
 License: GPL
 Group: Graphical desktop/KDE
@@ -28,8 +28,6 @@ BuildArch: noarch
 
 Conflicts:  gambas3-runtime  > 3.17.2
 
-#BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
 %description
 DnfDrake  is a frontend for DNF package manager
 Powerful like a terminal and simple like a GUI!
@@ -56,4 +54,3 @@ install -Dm 644 dnfdrake.svg  -t %{buildroot}/%{_datadir}/icons/hicolor/32x32/ap
 %{_datadir}/dnfdrake/dnfdrake-COMMAND
 %{_datadir}/dnfdrake/dnfdrake-*-*
 %{_datadir}/dnfdrake/dnfdraketray.gambas.desktop
-
