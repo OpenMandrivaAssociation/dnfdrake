@@ -1,5 +1,5 @@
 Name: dnfdrake
-Version: 3.4.4
+Version: 3.5.0
 Release: 1
 Packager: Astragalo
 License: GPL
@@ -36,6 +36,7 @@ Powerful like a terminal and simple like a GUI!
 %autosetup -n dnfdrake
 
 %install
+
 install -Dm 755 dnfdrake.gambas -t %{buildroot}/%{_bindir}/
 install -Dm 755 dnfdraketray.gambas -t %{buildroot}/%{_bindir}/
 install -Dm 755 dnfdrake.desktop -t %buildroot/%_datadir/applications/
