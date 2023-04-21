@@ -1,6 +1,6 @@
 Name: dnfdrake
 Version: 3.6.5
-Release: 1
+Release: 2
 Packager: Astragalo
 License: GPL
 Group: Graphical desktop/KDE
