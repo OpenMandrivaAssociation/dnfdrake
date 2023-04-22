@@ -26,7 +26,7 @@ Requires: xrandr
 
 BuildArch: noarch
 
-Conflicts:  gambas3-runtime  > 3.18.1
+Conflicts:  gambas3-runtime  > 3.18.2
 
 %description
 DnfDrake  is a frontend for DNF package manager
