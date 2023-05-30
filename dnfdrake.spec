@@ -3,7 +3,7 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	3.6.8
+Version:	3.6.12
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
