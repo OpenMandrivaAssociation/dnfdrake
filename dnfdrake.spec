@@ -7,7 +7,8 @@ Version:	3.6.12
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
-URL:		https://github.com/astrgl/dnfdrake
+URL:		https://mib.pianetalinux.org
+#URL:		https://github.com/astrgl/dnfdrake
 Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:	gambas3-devel
