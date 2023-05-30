@@ -1,5 +1,5 @@
 #define gb3_ver %(gbc3 -V)
-%global gb3_ver 3.18.1
+%global gb3_ver 3.18.2
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
