@@ -1,4 +1,4 @@
-%global gb3_ver %(gbc3 -V || echo 3.18.1)
+%global gb3_ver %(gbc3 -V || echo 3.18.2)
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
