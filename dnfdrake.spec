@@ -1,16 +1,14 @@
-#define gb3_ver %(gbc3 -V)
-%global gb3_ver 3.18.2
+%global gb3_ver %(gbc3 -V || echo 3.18.1)
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
 Version:	3.6.12
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Graphical desktop/KDE
-URL:		https://mib.pianetalinux.org
+URL:           https://mib.pianetalinux.org
 #URL:		https://github.com/astrgl/dnfdrake
 Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
-
 BuildRequires:	gambas3-devel
 BuildRequires:	gambas3-gb-dbus
 BuildRequires:	gambas3-gb-form
@@ -38,6 +36,8 @@ Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
 Requires:	dnfdraketray
 
+Suggests:	dnfdrake
+
 BuildArch: noarch
 
 %files
@@ -62,7 +62,7 @@ Powerful like a terminal and simple like a GUI!
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
 gba3
 
-# rename binary
+# unversion binary
 mv %{name}-%{version}.gambas %{name}.gambas
 
 %install
@@ -72,7 +72,6 @@ install -Dm 0755 %{name}.gambas -t %{buildroot}/%{_bindir}/
 # data files
 install -Dm 0644 FILE-EXTRA/%{name}-*-* -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0644 FILE-EXTRA/%{name}-COMMAND -t %{buildroot}/%{_datadir}/%{name}/
-install -Dm 0644 ICONS-EXTRA/* -t %{buildroot}/%{_datadir}/%{name}/ICONS-EXTRA/
 
 #.desktop
 install -Dm 0755 FILE-EXTRA/%{name}.desktop -t %{buildroot}/%{_datadir}/applications
