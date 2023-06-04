@@ -36,8 +36,6 @@ Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
 Requires:	dnfdraketray
 
-Suggests:	dnfdrake
-
 BuildArch: noarch
 
 %files
