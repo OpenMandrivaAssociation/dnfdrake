@@ -2,11 +2,11 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	3.6.19
+Version:	3.6.20
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
-URL:           https://mib.pianetalinux.org
+URL:		https://mib.pianetalinux.org
 #URL:		https://github.com/astrgl/dnfdrake
 Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	gambas3-devel
@@ -70,6 +70,10 @@ install -Dm 0755 %{name}.gambas -t %{buildroot}/%{_bindir}/
 # data files
 install -Dm 0644 FILE-EXTRA/%{name}-*-* -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0644 FILE-EXTRA/%{name}-COMMAND -t %{buildroot}/%{_datadir}/%{name}/
+
+# logos
+install -Dm 0644 LINUX.png -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0644 OMA.png -t %{buildroot}/%{_datadir}/%{name}/
 
 #.desktop
 install -Dm 0755 FILE-EXTRA/%{name}.desktop -t %{buildroot}/%{_datadir}/applications
