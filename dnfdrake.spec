@@ -1,14 +1,15 @@
-%global gb3_ver %(gbc3 -V || echo 3.18.2)
+%global gb3_ver %(gbc3 -V |cut -d" " -f1 || echo 3.18.3)
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
 Version:	3.6.20
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
 #URL:		https://github.com/astrgl/dnfdrake
 Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
+
 BuildRequires:	gambas3-devel
 BuildRequires:	gambas3-gb-dbus
 BuildRequires:	gambas3-gb-form
