@@ -1,4 +1,5 @@
-%global gb3_ver %(gbc3 -V |cut -d" " -f1 || echo 3.18.3)
+#global gb3_ver %((gbcw3 -V |cut -d" " -f1) || echo 3.18.3)
+%global gb3_ver 3.18.3
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
