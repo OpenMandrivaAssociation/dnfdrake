@@ -40,6 +40,11 @@ Requires:	dnfdraketray
 
 BuildArch: noarch
 
+%description
+DnfDrake is a frontend for DNF package manager
+Powerful like a terminal and simple like a GUI!
+
+
 %files
 %license FILE-EXTRA/license
 %{_bindir}/%{name}.gambas
@@ -50,10 +55,6 @@ BuildArch: noarch
 %{_iconsdir}/hicolor/*/apps/%{name}.svg
 
 #---------------------------------------------------------------------------
-
-%description
-DnfDrake is a frontend for DNF package manager
-Powerful like a terminal and simple like a GUI!
 
 %prep
 %autosetup -p1
