@@ -2,8 +2,8 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	3.6.22
-Release:	2
+Version:	4.0.0
+Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
