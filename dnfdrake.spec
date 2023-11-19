@@ -3,7 +3,7 @@
 Summary:	A frontend for DNF
 Name:		dnfdrake
 Version:	4.0.0
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
@@ -79,6 +79,7 @@ install -Dm 0644 OMA.png -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0755 FILE-EXTRA/%{name}.desktop -t %{buildroot}/%{_datadir}/applications
 
 # icons
+install -Dm 0644 ICONS-EXTRA/* -t %{buildroot}%{_datadir}/%{name}/
 install -Dm 0644 %{name}.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps/
 for d in 16 32 48 64 72 128 256 512
 do
