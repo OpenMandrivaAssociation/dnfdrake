@@ -32,7 +32,7 @@ Requires:	gambas-gb.image = %{gb3_ver}
 Requires:	lsb-release
 Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
-Requires:	dnfdraketray
+Requires:	draketray
 
 BuildArch: noarch
 
