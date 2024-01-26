@@ -3,12 +3,13 @@
 Summary:	A frontend for DNF
 Name:		dnfdrake
 Version:	4.1.6
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
 #URL:		https://github.com/astrgl/dnfdrake
-Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
+#Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
+Source:		%{name}-%{version}.tar.gz
 
 BuildRequires:	gambas-devel
 BuildRequires:	gambas-gb.dbus
@@ -69,6 +70,10 @@ install -Dm 0755 %{name}.gambas -t %{buildroot}/%{_bindir}/
 
 # data files
 install -Dm 0644 FILE-EXTRA/%{name}-*-* -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0644 FILE-EXTRA/license -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0644 FILE-EXTRA/COPYING* -t %{buildroot}/%{_datadir}/%{name}/
+
+
 install -Dm 0644 FILE-EXTRA/%{name}-COMMAND -t %{buildroot}/%{_datadir}/%{name}/
 
 # logos
@@ -80,6 +85,7 @@ install -Dm 0755 FILE-EXTRA/%{name}.desktop -t %{buildroot}/%{_datadir}/applicat
 
 # icons
 install -Dm 0644 ICONS-EXTRA/* -t %{buildroot}%{_datadir}/%{name}/
+install -Dm 0644 ICONS-EXTRA/* -t %{buildroot}%{_datadir}/%{name}/icons/
 install -Dm 0644 %{name}.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps/
 for d in 16 32 48 64 72 128 256 512
 do
