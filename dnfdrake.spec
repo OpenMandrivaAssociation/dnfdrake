@@ -1,9 +1,11 @@
 %global gb3_ver %(rpm -q --qf '%%{version}' gambas-devel)
+%define gb3_major %(echo %{gb3_ver} |cut -d. -f1-2)
+%define gb3_next_major %(echo -n $(echo %{gb3_major} |cut -d. -f1).; GB_MINOR=$(echo %{gb3_ver}|cut -d. -f2); echo -n $((GB_MINOR+1)))
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
 Version:	4.2.97
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
@@ -23,13 +25,13 @@ BuildRequires:	imagemagick
 Requires:	sudo
 Requires:	createrepo_c
 Requires:	dnf-utils
-Requires:	gambas-runtime = %{gb3_ver}
-Requires:	gambas-gb.dbus = %{gb3_ver}
-Requires:	gambas-gb.form = %{gb3_ver}
-Requires:	gambas-gb.form.stock = %{gb3_ver}
-Requires:	gambas-gb.gui = %{gb3_ver}
-Requires:	gambas-gui-backend = %{gb3_ver}
-Requires:	gambas-gb.image = %{gb3_ver}
+Requires:	(gambas-runtime >= %{gb3_major} with gambas-runtime < %{gb3_next_major})
+Requires:	(gambas-gb.dbus >= %{gb3_major} with gambas-gb.dbus < %{gb3_next_major})
+Requires:	(gambas-gb.form >= %{gb3_major} with gambas-gb.form < %{gb3_next_major})
+Requires:	(gambas-gb.form.stock >= %{gb3_major} with gambas-gb.form.stock < %{gb3_next_major})
+Requires:	(gambas-gb.gui >= %{gb3_major} with gambas-gb.gui < %{gb3_next_major})
+Requires:	(gambas-gui-backend >= %{gb3_major} with gambas-gui-backend < %{gb3_next_major})
+Requires:	(gambas-gb.image >= %{gb3_major} with gambas-gb.image < %{gb3_next_major})
 Requires:	lsb-release
 Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
