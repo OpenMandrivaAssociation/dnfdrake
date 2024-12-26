@@ -80,6 +80,7 @@ install -Dm 0644 FILE-EXTRA/%{name}-COMMAND -t %{buildroot}/%{_datadir}/%{name}/
 
 # logos
 install -Dm 0644 LINUX.png -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0644 OMA-BD.png -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0644 OMA.png -t %{buildroot}/%{_datadir}/%{name}/
 
 #.desktop
