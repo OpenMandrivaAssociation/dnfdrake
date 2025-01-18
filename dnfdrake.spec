@@ -1,11 +1,11 @@
-%define gb3_ver %(if rpm -q gambas-devel &>/dev/null; then rpm -q --qf '%%{version}' gambas-devel; else echo -n 3.19; fi)
+%define gb3_ver %(if rpm -q gambas-devel &>/dev/null; then rpm -q --qf '%%{version}' gambas-devel; else echo -n 3.20; fi)
 %define gb3_major %(echo %{gb3_ver} |cut -d. -f1-2)
 %define gb3_next_major %(echo -n $(echo %{gb3_major} |cut -d. -f1).; GB_MINOR=$(echo %{gb3_ver}|cut -d. -f2); echo -n $((GB_MINOR+1)))
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
 Version:	4.2.97
-Release:	4
+Release:	5
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
@@ -58,6 +58,7 @@ Powerful like a terminal and simple like a GUI!
 
 %prep
 %autosetup -p1
+sed -i -e 's,gb\.qt5,gb.qt6,' .project
 
 %build
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
