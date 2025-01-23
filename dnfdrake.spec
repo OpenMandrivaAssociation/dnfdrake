@@ -4,8 +4,8 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	4.2.97
-Release:	5
+Version:	4.3.0
+Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
@@ -18,6 +18,7 @@ BuildRequires:	gambas-gb.dbus
 BuildRequires:	gambas-gb.form
 BuildRequires:	gambas-gb.form.stock
 BuildRequires:	gambas-gb.gui
+BuildRequires:	gambas-gb.qt6
 BuildRequires:	gambas-gb.image
 BuildRequires:	gambas-gui-backend
 BuildRequires:	imagemagick
@@ -30,6 +31,7 @@ Requires:	(gambas-gb.dbus >= %{gb3_major} with gambas-gb.dbus < %{gb3_next_major
 Requires:	(gambas-gb.form >= %{gb3_major} with gambas-gb.form < %{gb3_next_major})
 Requires:	(gambas-gb.form.stock >= %{gb3_major} with gambas-gb.form.stock < %{gb3_next_major})
 Requires:	(gambas-gb.gui >= %{gb3_major} with gambas-gb.gui < %{gb3_next_major})
+Requires:	(gambas-gb.qt6 >= %{gb3_major} with gambas-gb.qt6 < %{gb3_next_major})
 Requires:	(gambas-gui-backend >= %{gb3_major} with gambas-gui-backend < %{gb3_next_major})
 Requires:	(gambas-gb.image >= %{gb3_major} with gambas-gb.image < %{gb3_next_major})
 Requires:	lsb-release
@@ -38,6 +40,9 @@ Requires:	xrandr
 Requires:	draketray
 
 BuildArch: noarch
+
+%patchlist
+dnfdrake-qt6.patch
 
 %description
 DnfDrake is a frontend for DNF package manager
