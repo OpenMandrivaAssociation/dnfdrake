@@ -21,6 +21,7 @@ BuildRequires:	gambas-gb.gui
 BuildRequires:	gambas-gb.qt6
 BuildRequires:	gambas-gb.image
 BuildRequires:	gambas-gui-backend
+BuildRequires:	gambas-gb.form.dialog
 BuildRequires:	imagemagick
 
 Requires:	sudo
