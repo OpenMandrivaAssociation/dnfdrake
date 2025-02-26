@@ -4,7 +4,7 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	4.3.0
+Version:	4.4.1
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
@@ -30,6 +30,7 @@ Requires:	(gambas-runtime >= %{gb3_major} with gambas-runtime < %{gb3_next_major
 Requires:	(gambas-gb.dbus >= %{gb3_major} with gambas-gb.dbus < %{gb3_next_major})
 Requires:	(gambas-gb.form >= %{gb3_major} with gambas-gb.form < %{gb3_next_major})
 Requires:	(gambas-gb.form.stock >= %{gb3_major} with gambas-gb.form.stock < %{gb3_next_major})
+Requires:	(gambas-gb.form.dialog >= %{gb3_major} with gambas-gb.form.dialog < %{gb3_next_major})
 Requires:	(gambas-gb.gui >= %{gb3_major} with gambas-gb.gui < %{gb3_next_major})
 Requires:	(gambas-gb.qt6 >= %{gb3_major} with gambas-gb.qt6 < %{gb3_next_major})
 Requires:	(gambas-gui-backend >= %{gb3_major} with gambas-gui-backend < %{gb3_next_major})
@@ -41,8 +42,8 @@ Requires:	draketray
 
 BuildArch: noarch
 
-%patchlist
-dnfdrake-qt6.patch
+#%patchlist
+#dnfdrake-qt6.patch
 
 %description
 DnfDrake is a frontend for DNF package manager
@@ -63,7 +64,7 @@ Powerful like a terminal and simple like a GUI!
 
 %prep
 %autosetup -p1
-sed -i -e 's,gb\.qt5,gb.qt6,' .project
+#sed -i -e 's,gb\.qt5,gb.qt6,' .project
 
 %build
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
