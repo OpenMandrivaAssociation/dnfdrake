@@ -4,8 +4,8 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	4.4.2
-Release:	2
+Version:	5.0.0
+Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
@@ -17,16 +17,14 @@ BuildRequires:	gambas-devel
 BuildRequires:	gambas-gb.dbus
 BuildRequires:	gambas-gb.form
 BuildRequires:	gambas-gb.form.stock
+BuildRequires:	gambas-gb.form.dialog
 BuildRequires:	gambas-gb.gui
 BuildRequires:	gambas-gb.qt6
 BuildRequires:	gambas-gb.image
 BuildRequires:	gambas-gui-backend
-BuildRequires:	gambas-gb.form.dialog
 BuildRequires:	imagemagick
 
-Requires:	sudo
-Requires:	createrepo_c
-Requires:	dnf-utils
+
 Requires:	(gambas-runtime >= %{gb3_major} with gambas-runtime < %{gb3_next_major})
 Requires:	(gambas-gb.dbus >= %{gb3_major} with gambas-gb.dbus < %{gb3_next_major})
 Requires:	(gambas-gb.form >= %{gb3_major} with gambas-gb.form < %{gb3_next_major})
@@ -36,16 +34,17 @@ Requires:	(gambas-gb.gui >= %{gb3_major} with gambas-gb.gui < %{gb3_next_major})
 Requires:	(gambas-gb.qt6 >= %{gb3_major} with gambas-gb.qt6 < %{gb3_next_major})
 Requires:	(gambas-gui-backend >= %{gb3_major} with gambas-gui-backend < %{gb3_next_major})
 Requires:	(gambas-gb.image >= %{gb3_major} with gambas-gb.image < %{gb3_next_major})
-Requires:	gambas-gb.complex = %{gb3_ver}
+Requires:	(gambas-gb.complex >= %{gb3_major} with gambas-gb.complex < %{gb3_next_major})
+Requires:	sudo
 Requires:	lsb-release
+Requires:	createrepo_c
+Requires:	dnf-utils
 Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
+Requires:	polkit
 Requires:	draketray
 
 BuildArch: noarch
-
-#%patchlist
-#dnfdrake-qt6.patch
 
 %description
 DnfDrake is a frontend for DNF package manager
@@ -55,18 +54,19 @@ Powerful like a terminal and simple like a GUI!
 %files
 %license FILE-EXTRA/license
 %{_bindir}/%{name}.gambas
+%{_bindir}/%{name}
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.svg
+%{_datadir}//polkit-1/actions/org.freedesktop.policykit.dnfdrake.policy
 
 #---------------------------------------------------------------------------
 
 %prep
 %autosetup -p1
-#sed -i -e 's,gb\.qt5,gb.qt6,' .project
 
 %build
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
@@ -78,13 +78,13 @@ mv %{name}-%{version}.gambas %{name}.gambas
 %install
 # binary
 install -Dm 0755 %{name}.gambas -t %{buildroot}/%{_bindir}/
+install -Dm 0755 FILE-EXTRA/%{name} -t %{buildroot}/%{_bindir}/
 
 # data files
 install -Dm 0644 FILE-EXTRA/%{name}-*-* -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0644 FILE-EXTRA/license -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0644 FILE-EXTRA/COPYING* -t %{buildroot}/%{_datadir}/%{name}/
-
-
+install -Dm 0644 FILE-EXTRA/org.freedesktop.policykit.dnfdrake.policy -t %{buildroot}/%{_datadir}/polkit-1/actions/
 install -Dm 0644 FILE-EXTRA/%{name}-COMMAND -t %{buildroot}/%{_datadir}/%{name}/
 
 # logos
