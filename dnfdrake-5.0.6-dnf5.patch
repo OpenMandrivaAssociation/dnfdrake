@@ -1,0 +1,94 @@
+diff -up dnfdrake-5.0.6/.src/FCONFIG.class.omv~ dnfdrake-5.0.6/.src/FCONFIG.class
+--- dnfdrake-5.0.6/.src/FCONFIG.class.omv~	2025-05-29 18:53:37.269969640 +0200
++++ dnfdrake-5.0.6/.src/FCONFIG.class	2025-05-29 18:53:50.693571658 +0200
+@@ -33,7 +33,7 @@ Public Sub Form_Open()
+         
+         If Exist(User.Home &/ ".config/dnfdrake/distrosync") Then
+            TXTUPDATE.Text = "DistroSync command"
+-           TXTUPDATECMD.Text = "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh --allowerasing distro-sync"
++           TXTUPDATECMD.Text = "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh distro-sync --allowerasing"
+            TXTUPDATECMD.Enabled = False
+         Else  
+            TXTUPDATECMD.Enabled = True
+diff -up dnfdrake-5.0.6/.src/FERROR.class.omv~ dnfdrake-5.0.6/.src/FERROR.class
+--- dnfdrake-5.0.6/.src/FERROR.class.omv~	2025-05-29 18:55:42.126443376 +0200
++++ dnfdrake-5.0.6/.src/FERROR.class	2025-05-29 18:55:51.280303009 +0200
+@@ -77,7 +77,7 @@ Dim i As Integer
+           If InStr($RETRY, " --refresh upgrade") > 0 Then
+               Print #Fmain.$hProcess, "dnf repolist; sudo dnf --refresh upgrade" & "| tee " & User.Home & "/.config/dnfdrake/log/" & Fmain.$DATATIME & "-dnfdrakelog-update.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
+           Else If InStr($RETRY, "distro-sync") > 0
+-              Print #Fmain.$hProcess, "dnf repolist; sudo dnf --refresh --allowerasing distro-sync | tee " & User.Home & "/.config/dnfdrake/log/" & Fmain.$DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine; 
++              Print #Fmain.$hProcess, "dnf repolist; sudo dnf --refresh distro-sync --allowerasing | tee " & User.Home & "/.config/dnfdrake/log/" & Fmain.$DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine; 
+           Else 
+             Print #Fmain.$hProcess, $RETRY  
+           Endif
+diff -up dnfdrake-5.0.6/.src/FUPDATERESUME.class.omv~ dnfdrake-5.0.6/.src/FUPDATERESUME.class
+--- dnfdrake-5.0.6/.src/FUPDATERESUME.class.omv~	2025-05-29 18:53:55.643578749 +0200
++++ dnfdrake-5.0.6/.src/FUPDATERESUME.class	2025-05-29 18:54:37.715645681 +0200
+@@ -37,12 +37,12 @@ Public Sub BTNRESUME_Click()
+   Fmain.Mouse = Mouse.Wait 
+   If Fmain.BTNDISTUPDATE.Visible = True
+     If Fmain.$LOG = "NOLOG"
+-    Print #Fmain.$hProcess, "sudo  dnf --refresh --allowerasing distro-sync" & Fmain.$VERBOSE & gb.NewLine;
++    Print #Fmain.$hProcess, "sudo  dnf --refresh distro-sync --allowerasing" & Fmain.$VERBOSE & gb.NewLine;
+     FRUNSHOW
+     Endif 
+     If Fmain.$LOG = "LOG" Then
+     Fmain.DATATIME
+-    Print #Fmain.$hProcess, "sudo  dnf --refresh --allowerasing distro-sync | tee " & User.Home & "/.config/dnfdrake/log/" & Fmain.$DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
++    Print #Fmain.$hProcess, "sudo  dnf --refresh distro-sync --allowerasing | tee " & User.Home & "/.config/dnfdrake/log/" & Fmain.$DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
+     FRUNSHOW
+     Endif
+   Else 
+@@ -66,12 +66,12 @@ Public Sub BTNREUPADTE_Click()
+   Fmain.Mouse = Mouse.Wait 
+   If Fmain.BTNDISTUPDATE.Visible = True
+     If Fmain.$LOG = "NOLOG"
+-    Print #Fmain.$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh --allowerasing distro-sync" & Fmain.$VERBOSE & gb.NewLine;
++    Print #Fmain.$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh distro-sync --allowerasing" & Fmain.$VERBOSE & gb.NewLine;
+     FRUNSHOW
+     Endif 
+     If Fmain.$LOG = "LOG" Then
+     Fmain.DATATIME
+-    Print #Fmain.$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh --allowerasing distro-sync | tee " & User.Home & "/.config/dnfdrake/log/last.log" & Fmain.$DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
++    Print #Fmain.$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh distro-sync --allowerasing | tee " & User.Home & "/.config/dnfdrake/log/last.log" & Fmain.$DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
+     FRUNSHOW
+     Endif
+   Else 
+diff -up dnfdrake-5.0.6/.src/Fmain.class.omv~ dnfdrake-5.0.6/.src/Fmain.class
+--- dnfdrake-5.0.6/.src/Fmain.class.omv~	2025-05-29 18:54:45.606358955 +0200
++++ dnfdrake-5.0.6/.src/Fmain.class	2025-05-29 18:55:24.664766087 +0200
+@@ -2503,14 +2503,14 @@ If $ROOTMODE = 1 Then
+     Me.Mouse = Mouse.Wait 
+     ' $MEMOCOMMAND = "RECOVERSUSPEND" ' RIMOSSO IL RIPRISTINO DEL SUSPEND ORA AVVIENE SOLO ALLA CHIUSURA DI DNFDRAKE
+     If $LOG = "NOLOG"
+-    Print #$hProcess, "su - " & $USERDEFAULT & " -c " & Chr$(34) & "dnf clean all" & Chr$(34) & "; dnf clean all; dnf repolist; sudo dnf --refresh --allowerasing distro-sync" & $VERBOSE & gb.NewLine;
++    Print #$hProcess, "su - " & $USERDEFAULT & " -c " & Chr$(34) & "dnf clean all" & Chr$(34) & "; dnf clean all; dnf repolist; sudo dnf --refresh distro-sync --allowerasing" & $VERBOSE & gb.NewLine;
+     FRUNSHOW
+     Wait 2
+     '$MEMOCOMMAND = "RECOVERSUSPEND" ' RIMOSSO IL RIPRISTINO DEL SUSPEND ORA AVVIENE SOLO ALLA CHIUSURA DI DNFDRAKE
+     Endif 
+     If $LOG = "LOG" Then
+     DATATIME
+-    Print #$hProcess, "su - " & $USERDEFAULT & " -c " & Chr$(34) & "dnf clean all" & Chr$(34) & "; dnf clean all; dnf repolist; sudo dnf --refresh --allowerasing distro-sync | tee " & User.Home & "/.config/dnfdrake/log/" & $DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
++    Print #$hProcess, "su - " & $USERDEFAULT & " -c " & Chr$(34) & "dnf clean all" & Chr$(34) & "; dnf clean all; dnf repolist; sudo dnf --refresh distro-sync --allowerasing | tee " & User.Home & "/.config/dnfdrake/log/" & $DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
+     FRUNSHOW
+     'Wait 2
+     Endif
+@@ -2523,14 +2523,14 @@ Else
+     Me.Mouse = Mouse.Wait 
+     ' $MEMOCOMMAND = "RECOVERSUSPEND" ' RIMOSSO IL RIPRISTINO DEL SUSPEND ORA AVVIENE SOLO ALLA CHIUSURA DI DNFDRAKE
+     If $LOG = "NOLOG"
+-    Print #$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh --allowerasing distro-sync" & $VERBOSE & gb.NewLine;
++    Print #$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh distro-sync --allowerasing" & $VERBOSE & gb.NewLine;
+     FRUNSHOW
+     Wait 2
+     '$MEMOCOMMAND = "RECOVERSUSPEND" ' RIMOSSO IL RIPRISTINO DEL SUSPEND ORA AVVIENE SOLO ALLA CHIUSURA DI DNFDRAKE
+     Endif 
+     If $LOG = "LOG" Then
+     DATATIME
+-    Print #$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh --allowerasing distro-sync | tee " & User.Home & "/.config/dnfdrake/log/" & $DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
++    Print #$hProcess, "sudo dnf clean all; dnf clean all; dnf repolist; sudo dnf --refresh distro-sync --allowerasing | tee " & User.Home & "/.config/dnfdrake/log/" & $DATATIME & "-dnfdrakelog-sync.log " & User.Home & "/.config/dnfdrake/log/last.log" & gb.NewLine;
+     FRUNSHOW
+     'Wait 2
+     Endif
