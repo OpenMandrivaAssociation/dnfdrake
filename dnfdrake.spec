@@ -4,13 +4,13 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	5.0.6
+Version:	5.0.110
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
-#URL:		https://github.com/astrgl/dnfdrake
-Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
+#URL:		https://github.com/astrgl/OM-dnfdrake
+Source0:	https://github.com/astrgl/OM-dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:	gambas-devel
 BuildRequires:	gambas-gb.dbus
@@ -45,9 +45,6 @@ Requires:	draketray
 
 BuildArch: noarch
 
-%patchlist
-dnfdrake-5.0.6-dnf5.patch
-
 %description
 DnfDrake is a frontend for DNF package manager
 Powerful like a terminal and simple like a GUI!
@@ -68,14 +65,14 @@ Powerful like a terminal and simple like a GUI!
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n OM-dnfdrake-%{version}
 
 %build
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
 gba3
 
 # unversion binary
-mv %{name}-%{version}.gambas %{name}.gambas
+mv OM-%{name}-%{version}.gambas %{name}.gambas
 
 %install
 # binary
