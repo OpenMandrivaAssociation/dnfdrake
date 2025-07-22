@@ -4,13 +4,14 @@
 
 Summary:	A frontend for DNF
 Name:		dnfdrake
-Version:	5.0.110
+Version:	5.5.8
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
-#URL:		https://github.com/astrgl/OM-dnfdrake
-Source0:	https://github.com/astrgl/OM-dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
+#URL:		https://github.com/astrgl/dnfdrake
+#Source0:	https://github.com/astrgl/dnfdrake/archive/%{version}/%{name}-%{version}.tar.gz
+Source:		%{name}-%{version}.tar.gz
 
 BuildRequires:	gambas-devel
 BuildRequires:	gambas-gb.dbus
@@ -65,14 +66,14 @@ Powerful like a terminal and simple like a GUI!
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n OM-dnfdrake-%{version}
+%autosetup -p1
 
 %build
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
 gba3
 
 # unversion binary
-mv OM-%{name}-%{version}.gambas %{name}.gambas
+mv %{name}-%{version}.gambas %{name}.gambas
 
 %install
 # binary
