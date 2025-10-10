@@ -5,7 +5,7 @@
 Summary:	A frontend for DNF
 Name:		dnfdrake
 Version:	5.5.9
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
@@ -38,8 +38,6 @@ Requires:	(gambas-gb.complex >= %{gb3_major} with gambas-gb.complex < %{gb3_next
 Requires:	sudo
 Requires:	lsb-release
 Requires:	createrepo_c
-Requires:	dnf-utils
-Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
 Requires:	polkit
 Requires:	draketray
