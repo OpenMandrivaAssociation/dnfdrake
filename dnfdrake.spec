@@ -1,4 +1,4 @@
-%define gb3_ver %(if rpm -q gambas-devel &>/dev/null; then rpm -q --qf '%%{version}' gambas-devel; else echo -n 3.20; fi)
+%define gb3_ver %(if rpm -q gambas-devel &>/dev/null; then rpm -q --qf '%%{version}' gambas-devel; else echo -n 3.21; fi)
 %define gb3_major %(echo %{gb3_ver} |cut -d. -f1-2)
 %define gb3_next_major %(echo -n $(echo %{gb3_major} |cut -d. -f1).; GB_MINOR=$(echo %{gb3_ver}|cut -d. -f2); echo -n $((GB_MINOR+1)))
 
