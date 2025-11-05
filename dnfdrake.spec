@@ -65,6 +65,7 @@ Powerful like a terminal and simple like a GUI!
 
 %prep
 %autosetup -p1
+echo "Building with gambas %{gb3_ver}, resulting in dependency >= %{gb3_major}, < %{gb3_next_major}"
 
 %build
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
